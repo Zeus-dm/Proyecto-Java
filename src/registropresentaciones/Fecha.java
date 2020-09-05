@@ -57,5 +57,8 @@ public class Fecha {
     public void addPresentacion( Presentacion presentacion){
         listaPresentaciones.add(presentacion);
     }
+    public String getFecha(){
+        return dia+"/"+mes+"/"+anio;
+    }
 
 }

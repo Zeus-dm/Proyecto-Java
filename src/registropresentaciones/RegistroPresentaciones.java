@@ -35,7 +35,7 @@ public class RegistroPresentaciones {
         //mostrar
         for( Fecha f: calendario.getFechas() ){
 
-            System.out.println("El dia "+f.getDia()+"/"+f.getMes()+"/"+f.getAnio()+" tienes estas presentaciones: ");
+            System.out.println("El dia "+f.getFecha()+" tienes estas presentaciones: ");
             
             for( Presentacion x: f.getListaPresentaciones() ){
             
