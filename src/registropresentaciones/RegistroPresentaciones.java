@@ -5,8 +5,6 @@
  */
 package registropresentaciones;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -42,9 +40,8 @@ public class RegistroPresentaciones {
             for( Presentacion x: f.getListaPresentaciones() ){
             
                 System.out.print( "Tema: "+x.getTema()+", Duracion: "+x.getDuracion()+" min , Expositor: "+x.getExpositor().getNombre()+", Asistentes: "  );
-                List<Asistente> listAsis = x.getListaAsistentes();
             
-                for( Asistente h: listAsis){
+                for( Asistente h: x.getListaAsistentes() ){
                     System.out.println( h.getNombre()+"("+h.getCargo()+"), ");
                 }
             }
