@@ -5,8 +5,7 @@
  */
 package registropresentaciones;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.TreeMap;
 
 /**
  *
@@ -14,26 +13,26 @@ import java.util.List;
  */
 public class Calendario {
     
-    private List<Fecha> fechas;
+    private TreeMap fechas;
     
     //CONSTRUCTOR
     public Calendario() {
-        fechas = new ArrayList<>();
+        fechas = new TreeMap();
     }
     
     //SETTERS
-    public void setFechas(List<Fecha> fechas) {
+    public void setFechas(TreeMap fechas) {
         this.fechas = fechas;
     }
     
     //GETTERS
-    public List<Fecha> getFechas() {
+    public TreeMap getFechas() {
         return fechas;
     }
     
     //METODOS
     public void addFecha( Fecha fecha){
-        fechas.add(fecha);
+        fechas.put(fecha.genKeyFecha() , fecha);
     }
     
 }

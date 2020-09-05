@@ -5,6 +5,8 @@
  */
 package registropresentaciones;
 
+import java.util.Iterator;
+
 
 /**
  *
@@ -31,21 +33,41 @@ public class RegistroPresentaciones {
         
         calendario.addFecha(f10_04_2020);  //inserta la fecha en el calendario
         
+        Expositor expo2 = new Expositor("Juan", 22, "Masculino", "Colombia", "Juan.nose@gmail.com");
+        Asistente asist2 = new Asistente("Miguel", 53, "Masculino", "Sonido");
+        Asistente asist3 = new Asistente("josefa", 21, "Femenino", "Ornamental");
+        
+        Presentacion fotosintesis = new Presentacion("Fotosintesis", 180, expo2 ); //crea la presentacion
+        fotosintesis.addAsistente(asist2);
+        fotosintesis.addAsistente(asist3);
+        
+        Presentacion largaVida = new Presentacion();
+        largaVida.setTema("Larga Vida");
+        
+        Fecha f26_03_2020 = new Fecha(26, 03, 2020); //crea la fecha
+        f26_03_2020.addPresentacion(fotosintesis); //inserta la presentacion a la fecha
+        f26_03_2020.addPresentacion(largaVida);
+        
+        calendario.addFecha(f26_03_2020);  //inserta la fecha en el calendario
         
         //mostrar
-        for( Fecha f: calendario.getFechas() ){
-
-            System.out.println("El dia "+f.getFecha()+" tienes estas presentaciones: ");
+        for( Iterator it = calendario.getFechas().keySet().iterator(); it.hasNext();) { 
+            String key = (String)it.next();
+            Fecha f = (Fecha)calendario.getFechas().get(key);
+            
+            System.out.println("\nEl dia "+f.getFecha()+" tienes estas presentaciones: ");
             
             for( Presentacion x: f.getListaPresentaciones() ){
             
                 System.out.print( "Tema: "+x.getTema()+", Duracion: "+x.getDuracion()+" min , Expositor: "+x.getExpositor().getNombre()+", Asistentes: "  );
             
                 for( Asistente h: x.getListaAsistentes() ){
-                    System.out.println( h.getNombre()+"("+h.getCargo()+"), ");
+                    System.out.print( h.getNombre()+"("+h.getCargo()+"), ");
                 }
+                System.out.print("\n");
             }
-        }
+
+	}
 
     }
     

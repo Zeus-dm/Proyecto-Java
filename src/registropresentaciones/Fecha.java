@@ -60,5 +60,8 @@ public class Fecha {
     public String getFecha(){
         return dia+"/"+mes+"/"+anio;
     }
+    public String genKeyFecha(){
+        return anio+"/"+mes+"/"+dia;
+    }
 
 }
