@@ -18,7 +18,7 @@ public class Presentacion {
     private int duracion;
     private Expositor expositor;
     private List<Asistente> listaAsistentes;
-    private String estado;
+    private String estado; // PGS = Progreso, CLD = Cancelado, CCD = Concluido.
     
     //CONSTRUCTORES
     public Presentacion(){
@@ -26,7 +26,7 @@ public class Presentacion {
         duracion = 60;
         expositor = new Expositor();
         listaAsistentes = new ArrayList<>();
-        estado = "PGS"; // PGS = progreso
+        estado = "PGS";
     }
     
     public Presentacion( String tema, int duracion, Expositor expositor){
@@ -75,10 +75,11 @@ public class Presentacion {
     public void addAsistente( Asistente asistente){
         listaAsistentes.add(asistente);
     }
-    public void cancelarPresentacion(){
+    public void cldPresentacion(){
         estado = "CLD"; // CLD = cancelado
     }
-    public void terminarPresentacion(){
-        estado = "TMD"; // TMD = terminado
+    public void ccdPresentacion(){
+        estado = "CCD"; // CLD = cancelado
     }
+    
 }

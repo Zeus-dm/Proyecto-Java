@@ -20,7 +20,8 @@ public class RegistroPresentaciones {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        Calendario calendario = new Calendario();
+        Calendario progreso = new Calendario();
+        Calendario concluidos = new Calendario();
         
         Expositor expo1 = new Expositor("Diego", 34, "Masculino", "Chile", "diego.nose@gmail.com");
         Asistente asist1 = new Asistente("Jose","Operario de Luces");
@@ -31,7 +32,7 @@ public class RegistroPresentaciones {
         Fecha f10_04_2020 = new Fecha(10, 04, 2020); //crea la fecha
         f10_04_2020.addPresentacion(seguridad); //inserta la presentacion a la fecha
         
-        calendario.addFecha(f10_04_2020);  //inserta la fecha en el calendario
+        progreso.addFecha(f10_04_2020);  //inserta la fecha en el calendario
         
         Expositor expo2 = new Expositor("Juan", 22, "Masculino", "Colombia", "Juan.nose@gmail.com");
         Asistente asist2 = new Asistente("Miguel", "Sonido");
@@ -49,12 +50,41 @@ public class RegistroPresentaciones {
         f26_03_2020.addPresentacion(fotosintesis); //inserta la presentacion a la fecha
         f26_03_2020.addPresentacion(largaVida);
         
-        calendario.addFecha(f26_03_2020);  //inserta la fecha en el calendario
+        progreso.addFecha(f26_03_2020);  //inserta la fecha en el calendario
+
+        largaVida.cldPresentacion();
+        seguridad.cldPresentacion();
         
+        concluidos.setFechas( progreso.actualizarCalendario( "CLD" ) );
+
         //mostrar
-        for( Iterator it = calendario.getFechas().keySet().iterator(); it.hasNext();) { 
+        for( Iterator it = progreso.getFechas().keySet().iterator(); it.hasNext();) { 
             String key = (String)it.next();
-            Fecha f = (Fecha)calendario.getFechas().get(key);
+            Fecha f = (Fecha)progreso.getFechas().get(key);
+            
+            System.out.println("\nEl dia "+f.getFecha()+" tienes estas presentaciones: ");
+            
+            for( Presentacion x: f.getListaPresentaciones() ){
+            
+                System.out.print( "Tema: "+x.getTema()+", Duracion: "+x.getDuracion()+" min , Expositor: "+x.getExpositor().getNombre()+", Asistentes: "  );
+            
+                for( Asistente h: x.getListaAsistentes() ){
+                    System.out.print( h.getNombre()+"("+h.getCargo()+"), ");
+                }
+                System.out.print("\n");
+            }
+
+        }
+        
+        fotosintesis.cldPresentacion();
+        
+        concluidos.setFechas( progreso.actualizarCalendario( "CLD" ) );
+        
+        System.out.print("\nEstos fueron concluidos") ;
+        
+        for( Iterator it = concluidos.getFechas().keySet().iterator(); it.hasNext();) { 
+            String key = (String)it.next();
+            Fecha f = (Fecha)concluidos.getFechas().get(key);
             
             System.out.println("\nEl dia "+f.getFecha()+" tienes estas presentaciones: ");
             
@@ -69,6 +99,8 @@ public class RegistroPresentaciones {
             }
 
 	}
+        
+        
 
     }
     
