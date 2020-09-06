@@ -23,7 +23,7 @@ public class RegistroPresentaciones {
         Calendario calendario = new Calendario();
         
         Expositor expo1 = new Expositor("Diego", 34, "Masculino", "Chile", "diego.nose@gmail.com");
-        Asistente asist1 = new Asistente("Jose", 23, "Masculino", "Operario de Luces");
+        Asistente asist1 = new Asistente("Jose","Operario de Luces");
         
         Presentacion seguridad = new Presentacion("Seguridad", 120, expo1 ); //crea la presentacion
         seguridad.addAsistente(asist1);
@@ -34,8 +34,8 @@ public class RegistroPresentaciones {
         calendario.addFecha(f10_04_2020);  //inserta la fecha en el calendario
         
         Expositor expo2 = new Expositor("Juan", 22, "Masculino", "Colombia", "Juan.nose@gmail.com");
-        Asistente asist2 = new Asistente("Miguel", 53, "Masculino", "Sonido");
-        Asistente asist3 = new Asistente("josefa", 21, "Femenino", "Ornamental");
+        Asistente asist2 = new Asistente("Miguel", "Sonido");
+        Asistente asist3 = new Asistente("josefa", "Ornamental");
         
         Presentacion fotosintesis = new Presentacion("Fotosintesis", 180, expo2 ); //crea la presentacion
         fotosintesis.addAsistente(asist2);
@@ -43,6 +43,7 @@ public class RegistroPresentaciones {
         
         Presentacion largaVida = new Presentacion();
         largaVida.setTema("Larga Vida");
+        largaVida.getExpositor().setNombre("Alberto");
         
         Fecha f26_03_2020 = new Fecha(26, 03, 2020); //crea la fecha
         f26_03_2020.addPresentacion(fotosintesis); //inserta la presentacion a la fecha

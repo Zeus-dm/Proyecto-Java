@@ -19,11 +19,11 @@ public class Expositor {
     
     //CONSTRUCTORES
     public Expositor(){
-        nombre = "";
+        nombre = "N/a";
         edad = 18;
-        genero = "";
-        nacionalidad = "";
-        email = "";
+        genero = "N/a";
+        nacionalidad = "N/a";
+        email = "N/a";
     }
     
     public Expositor( String nombre, int edad, String genero, String nacionalidad, String email){
