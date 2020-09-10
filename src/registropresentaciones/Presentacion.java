@@ -18,7 +18,7 @@ public class Presentacion {
     private int duracion;
     private Expositor expositor;
     private List<Asistente> listaAsistentes;
-    private String estado; // PGS = Progreso, CLD = Cancelado, CCD = Concluido
+    private String estado; // PGS = Progreso, CLD = Cancelado, CCD = Concluido.
     
     //CONSTRUCTORES
     public Presentacion(){

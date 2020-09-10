@@ -12,7 +12,7 @@ import java.util.Iterator;
  *
  * @author rafae
  */
-public class RegistroPresentaciones {
+public class main {
 
     /**
      * @param args the command line arguments
@@ -58,74 +58,40 @@ public class RegistroPresentaciones {
         cancelados.setFechas( progreso.actualizarCalendario( "CLD" ) );
 
         //mostrar
-        for( Iterator it = progreso.getFechas().keySet().iterator(); it.hasNext();) { 
-            String key = (String)it.next();
-            Fecha f = (Fecha)progreso.getFechas().get(key);
-            
-            System.out.println("\nEl dia "+f.getFecha()+" tienes estas presentaciones: ");
-            
-            for( Presentacion x: f.getListaPresentaciones() ){
-            
-                System.out.print( "Tema: "+x.getTema()+", Duracion: "+x.getDuracion()+" min , Expositor: "+x.getExpositor().getNombre()+", Asistentes: "  );
-            
-                for( Asistente h: x.getListaAsistentes() ){
-                    System.out.print( h.getNombre()+"("+h.getCargo()+"), ");
-                }
-                System.out.print("\n");
-            }
-
-        }
+        mostrarDatos( progreso );
         
+        fotosintesis.cldPresentacion();
         largaVida.cldPresentacion();
         seguridad.cldPresentacion();
         
-        //fotosintesis.cldPresentacion();
-        
         cancelados.setFechas( progreso.actualizarCalendario( "CLD" ) );
         
-        System.out.print("\nEstos fueron cancelados") ;
-        
-        for( Iterator it = cancelados.getFechas().keySet().iterator(); it.hasNext();) { 
-            String key = (String)it.next();
-            Fecha f = (Fecha)cancelados.getFechas().get(key);
-            
-            System.out.println("\nEl dia "+f.getFecha()+" tienes estas presentaciones: ");
-            
-            for( Presentacion x: f.getListaPresentaciones() ){
-            
-                System.out.print( "Tema: "+x.getTema()+", Duracion: "+x.getDuracion()+" min , Expositor: "+x.getExpositor().getNombre()+", Asistentes: "  );
-            
-                for( Asistente h: x.getListaAsistentes() ){
-                    System.out.print( h.getNombre()+"("+h.getCargo()+"), ");
-                }
-                System.out.print("\n");
-            }
-
-	}
+        System.out.println("\nEstos fueron cancelados") ;
+        mostrarDatos( cancelados ); 
         
         //mostrar
         System.out.println("\nSe actualizo el progreso:");
+        mostrarDatos( progreso );
         
-        for( Iterator it = progreso.getFechas().keySet().iterator(); it.hasNext();) { 
+    }
+    
+    public static void mostrarDatos( Calendario calendario ){
+        for( Iterator it = calendario.getFechas().keySet().iterator(); it.hasNext();) { 
             String key = (String)it.next();
-            Fecha f = (Fecha)progreso.getFechas().get(key);
+            Fecha f = (Fecha)calendario.getFechas().get(key);
             
-            System.out.println("\nEl dia "+f.getFecha()+" tienes estas presentaciones: ");
+            System.out.println("El dia "+f.getFecha());
             
             for( Presentacion x: f.getListaPresentaciones() ){
             
-                System.out.print( "Tema: "+x.getTema()+", Duracion: "+x.getDuracion()+" min , Expositor: "+x.getExpositor().getNombre()+", Asistentes: "  );
+                System.out.print( "\tTema: "+x.getTema()+", Duracion: "+x.getDuracion()+" min , Expositor: "+x.getExpositor().getNombre()+", Asistentes: "  );
             
                 for( Asistente h: x.getListaAsistentes() ){
                     System.out.print( h.getNombre()+"("+h.getCargo()+"), ");
                 }
                 System.out.print("\n");
             }
-
         }
-        
-        
-
     }
     
 }

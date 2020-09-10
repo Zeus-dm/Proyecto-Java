@@ -55,6 +55,7 @@ public class Calendario {
         
         TreeMap fechasElim = new TreeMap();
         List<Presentacion> aEliminar = new ArrayList<>();
+        List<Fecha> fEliminar = new ArrayList<>();
         
         for( Iterator it = fechas.keySet().iterator(); it.hasNext();) {
             
@@ -81,10 +82,14 @@ public class Calendario {
             aEliminar.clear();
             
             if(f.getListaPresentaciones().isEmpty()){ //elimina una fecha si esta no tiene ninguna presentacion
-                fechas.remove(key);
+                fEliminar.add(f);
             }
-            
 	}
+        
+        for( Fecha s: fEliminar){
+            fechas.remove( s.genKeyFecha() );
+        }
+        fEliminar.clear();
         
         return fechasElim;
     }
