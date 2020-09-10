@@ -21,7 +21,7 @@ public class RegistroPresentaciones {
         // TODO code application logic here
         
         Calendario progreso = new Calendario();
-        Calendario concluidos = new Calendario();
+        Calendario cancelados = new Calendario();
         
         Expositor expo1 = new Expositor("Diego", 34, "Masculino", "Chile", "diego.nose@gmail.com");
         Asistente asist1 = new Asistente("Jose","Operario de Luces");
@@ -52,10 +52,10 @@ public class RegistroPresentaciones {
         
         progreso.addFecha(f26_03_2020);  //inserta la fecha en el calendario
 
-        largaVida.cldPresentacion();
-        seguridad.cldPresentacion();
+        //largaVida.cldPresentacion();
+        //seguridad.cldPresentacion();
         
-        concluidos.setFechas( progreso.actualizarCalendario( "CLD" ) );
+        cancelados.setFechas( progreso.actualizarCalendario( "CLD" ) );
 
         //mostrar
         for( Iterator it = progreso.getFechas().keySet().iterator(); it.hasNext();) { 
@@ -76,15 +76,18 @@ public class RegistroPresentaciones {
 
         }
         
-        fotosintesis.cldPresentacion();
+        largaVida.cldPresentacion();
+        seguridad.cldPresentacion();
         
-        concluidos.setFechas( progreso.actualizarCalendario( "CLD" ) );
+        //fotosintesis.cldPresentacion();
         
-        System.out.print("\nEstos fueron concluidos") ;
+        cancelados.setFechas( progreso.actualizarCalendario( "CLD" ) );
         
-        for( Iterator it = concluidos.getFechas().keySet().iterator(); it.hasNext();) { 
+        System.out.print("\nEstos fueron cancelados") ;
+        
+        for( Iterator it = cancelados.getFechas().keySet().iterator(); it.hasNext();) { 
             String key = (String)it.next();
-            Fecha f = (Fecha)concluidos.getFechas().get(key);
+            Fecha f = (Fecha)cancelados.getFechas().get(key);
             
             System.out.println("\nEl dia "+f.getFecha()+" tienes estas presentaciones: ");
             
@@ -99,6 +102,27 @@ public class RegistroPresentaciones {
             }
 
 	}
+        
+        //mostrar
+        System.out.println("\nSe actualizo el progreso:");
+        
+        for( Iterator it = progreso.getFechas().keySet().iterator(); it.hasNext();) { 
+            String key = (String)it.next();
+            Fecha f = (Fecha)progreso.getFechas().get(key);
+            
+            System.out.println("\nEl dia "+f.getFecha()+" tienes estas presentaciones: ");
+            
+            for( Presentacion x: f.getListaPresentaciones() ){
+            
+                System.out.print( "Tema: "+x.getTema()+", Duracion: "+x.getDuracion()+" min , Expositor: "+x.getExpositor().getNombre()+", Asistentes: "  );
+            
+                for( Asistente h: x.getListaAsistentes() ){
+                    System.out.print( h.getNombre()+"("+h.getCargo()+"), ");
+                }
+                System.out.print("\n");
+            }
+
+        }
         
         
 
