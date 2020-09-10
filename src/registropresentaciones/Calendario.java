@@ -6,6 +6,7 @@
 package registropresentaciones;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 import java.util.TreeMap;
@@ -24,6 +25,7 @@ public class Calendario {
     }
     
     //SETTERS
+    /*Ingresa cada fecha en el calendario si no existe, si existe ingresa las presentaciones a la fecha existente*/
     public void setFechas(TreeMap mapFechas) {
         for( Iterator it = mapFechas.keySet().iterator(); it.hasNext();) {
             
@@ -51,6 +53,40 @@ public class Calendario {
         fechas.put(fecha.genKeyFecha() , fecha);
     }
     
+    /*actualiza el calendario concluyendo todas las presentaciones y fechas las cuales esten antes que la fecha actual*/
+    public void actualizarCalendario(){
+        String fecha = "";
+        
+        Calendar c1 = Calendar.getInstance();
+        String dia = Integer.toString(c1.get(Calendar.DATE));
+        String mes = Integer.toString(c1.get(Calendar.MONTH)+1);
+        String anio = Integer.toString(c1.get(Calendar.YEAR));
+        
+        if( mes.length() == 1 && dia.length() == 1){
+            fecha = anio+"/0"+mes+"/0"+dia;
+        }else if( dia.length() == 1){
+            fecha = anio+"/"+mes+"/0"+dia;
+        }else if( mes.length() == 1){
+            fecha = anio+"/0"+mes+"/"+dia;
+        }
+        
+        for( Iterator it = fechas.keySet().iterator(); it.hasNext();) { 
+            String key = (String)it.next();
+            Fecha f = (Fecha)fechas.get(key);
+            
+            if( f.genKeyFecha().compareTo(fecha) < 0){
+                for( Presentacion x: f.getListaPresentaciones() ){
+                    if(!x.getEstado().equals("CLD")){
+                        x.terminarPresentacion();
+                    }
+                }
+            }else{
+                break;
+            }
+        }
+    }
+    
+    /*actualiza el calendario retornando un mapa de fechas donde sus presentaciones tenga el estado @compare*/
     public TreeMap actualizarCalendario( String compare ){
         
         TreeMap fechasElim = new TreeMap();

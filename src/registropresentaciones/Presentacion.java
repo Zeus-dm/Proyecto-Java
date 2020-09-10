@@ -18,7 +18,7 @@ public class Presentacion {
     private int duracion;
     private Expositor expositor;
     private List<Asistente> listaAsistentes;
-    private String estado; // PGS = Progreso, CLD = Cancelado, CCD = Concluido.
+    private String estado;
     
     //CONSTRUCTORES
     public Presentacion(){
@@ -34,7 +34,7 @@ public class Presentacion {
         this.duracion = duracion;
         this.expositor = expositor;
         this.listaAsistentes = new ArrayList<>();
-        this.estado = "PGS";
+        this.estado = "PGS"; //PGS = progreso
     }
     
     //SETTERS
@@ -75,11 +75,11 @@ public class Presentacion {
     public void addAsistente( Asistente asistente){
         listaAsistentes.add(asistente);
     }
-    public void cldPresentacion(){
+    public void cancelarPresentacion(){
         estado = "CLD"; // CLD = cancelado
     }
-    public void ccdPresentacion(){
-        estado = "CCD"; // CLD = cancelado
+    public void terminarPresentacion(){
+        estado = "TMD"; // TMD = terminado
     }
     
 }
