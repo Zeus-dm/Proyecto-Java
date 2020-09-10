@@ -10,7 +10,7 @@ package registropresentaciones;
  *
  * @author rafae
  */
-public class RegistroPresentaciones {
+public class main {
 
     /**
      * @param args the command line arguments
