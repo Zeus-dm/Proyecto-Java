@@ -26,7 +26,7 @@ public class Presentacion {
         duracion = 60;
         expositor = new Expositor();
         listaAsistentes = new ArrayList<>();
-        estado = "PGS"; // PGS = progreso
+        estado = "PGS";
     }
     
     public Presentacion( String tema, int duracion, Expositor expositor){
@@ -34,7 +34,7 @@ public class Presentacion {
         this.duracion = duracion;
         this.expositor = expositor;
         this.listaAsistentes = new ArrayList<>();
-        this.estado = "PGS";
+        this.estado = "PGS"; //PGS = progreso
     }
     
     //SETTERS
@@ -81,4 +81,5 @@ public class Presentacion {
     public void terminarPresentacion(){
         estado = "TMD"; // TMD = terminado
     }
+    
 }

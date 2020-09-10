@@ -14,11 +14,11 @@ import java.util.List;
  */
 public class Fecha {
     
-    private int dia, mes, anio;
+    private String dia, mes, anio;
     private List<Presentacion> listaPresentaciones;
     
     //CONSTRUCTOR
-    public Fecha(int dia, int mes, int anio) {
+    public Fecha(String dia, String mes, String anio) {
         this.dia = dia;
         this.mes = mes;
         this.anio = anio;
@@ -26,13 +26,13 @@ public class Fecha {
     }
     
     //SETTERS
-    public void setDia(int dia) {
+    public void setDia(String dia) {
         this.dia = dia;
     }
-    public void setMes(int mes) {
+    public void setMes(String mes) {
         this.mes = mes;
     }
-    public void setAnio(int anio) {
+    public void setAnio(String anio) {
         this.anio = anio;
     }
     public void setListaPresentaciones(List<Presentacion> listaPresentaciones) {
@@ -40,13 +40,13 @@ public class Fecha {
     }
     
     //GETTERS
-    public int getDia() {
+    public String getDia() {
         return dia;
     }
-    public int getMes() {
+    public String getMes() {
         return mes;
     }
-    public int getAnio() {
+    public String getAnio() {
         return anio;
     }
     public List<Presentacion> getListaPresentaciones() {
@@ -57,8 +57,47 @@ public class Fecha {
     public void addPresentacion( Presentacion presentacion){
         listaPresentaciones.add(presentacion);
     }
+    
     public String getFecha(){
+        if( mes.length() == 1 && dia.length() == 1){
+            return "0"+dia+"/0"+mes+"/"+anio;
+        }else if( dia.length() == 1){
+            return "0"+dia+"/"+mes+"/"+anio;
+        }else if( mes.length() == 1){
+            return dia+"/0"+mes+"/"+anio;
+        }
         return dia+"/"+mes+"/"+anio;
+    }
+    
+    public String genKeyFecha(){
+        if( mes.length() == 1 && dia.length() == 1){
+            return anio+"/0"+mes+"/0"+dia;
+        }else if( dia.length() == 1){
+            return anio+"/"+mes+"/0"+dia;
+        }else if( mes.length() == 1){
+            return anio+"/0"+mes+"/"+dia;
+        }
+        return anio+"/"+mes+"/"+dia;
+    }
+    
+    public Presentacion searchPresentacion( String tema ){
+        for( Presentacion x: listaPresentaciones){
+            if( x.getTema().equalsIgnoreCase(tema)){
+                return x;
+            }
+        }
+        return null;
+    }
+    
+    public List searchPresentacion( int duracion ){
+        List<Presentacion> newList = new ArrayList<>();
+        
+        for( Presentacion x: listaPresentaciones){
+            if( x.getDuracion() == duracion){
+                newList.add(x);
+            }
+        }
+        return newList;
     }
 
 }
