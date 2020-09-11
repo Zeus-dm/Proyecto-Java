@@ -6,6 +6,7 @@
 package registropresentaciones;
 
 import java.util.Iterator;
+import java.util.Scanner;
 
 
 /**
@@ -23,78 +24,67 @@ public class main {
         Calendario progreso = new Calendario();
         Calendario cancelados = new Calendario();
         Calendario terminados = new Calendario();
-        
         //---------------------------
         
-        Expositor expo1 = new Expositor("Diego", 34, "Masculino", "Chile", "diego.nose@gmail.com");
-        Asistente asist1 = new Asistente("Jose","Operario de Luces");
+        Scanner opcion = new Scanner(System.in);
+        int opc;
         
-        Presentacion seguridad = new Presentacion("Seguridad", 120, expo1 ); //crea la presentacion
-        seguridad.addAsistente(asist1);
+        do{
+            
+            System.out.println("\t\tMenu Principal");
+            System.out.println("\t1-Ingresar manualmente una presentacion\n"
+                             + "\t2-Eliminar una presentacion\n"
+                             + "\t3-Mostrar presentaciones pendientes\n"
+                             + "\t4-Mostrar presentaciones canceladas\n"
+                             + "\t5-Mostrar presentaciones terminadas\n"
+                             + "\t6-Salir");
+            System.out.print("\tOpcion: ");
+            opc = opcion.nextInt();
+            
+            switch( opc ){
+                case 1 -> {
+                    ingresarDatos( progreso );
+                }
+                case 2 -> {
+                }
+                case 3 -> {
+                    progreso.actualizarCalendario();
+                    cancelados.setFechas( progreso.actualizarCalendario("CLD"));
+                    terminados.setFechas( progreso.actualizarCalendario("TMD"));
+                    
+                    System.out.println("Presentaciones Pendientes son:");
+                    mostrarDatos( progreso );
+                }
+                case 4 -> {
+                    cancelados.setFechas( progreso.actualizarCalendario("CLD"));
+                    
+                    System.out.println("Presentaciones Canceladas son:");
+                    mostrarDatos( cancelados );
+                }
+                case 5 -> {
+                    progreso.actualizarCalendario();
+                    terminados.setFechas( progreso.actualizarCalendario("TMD"));
+                    
+                    System.out.println("Presentaciones Terminadas a la Fecha son:");
+                    mostrarDatos( terminados );
+                }
+            }
+        }while(opc != 6);
+    }
+    
+    public static void ingresarDatos( Calendario calendario ){
+        System.out.println("\t\tPresentacion");
         
-        Fecha f10_04_2020 = new Fecha("10", "04", "2020"); //crea la fecha
-        f10_04_2020.addPresentacion(seguridad); //inserta la presentacion a la fecha
+        Scanner opcion = new Scanner(System.in);
         
-        progreso.addFecha(f10_04_2020);  //inserta la fecha en el calendario
+        //hacer un do while para comprobar fecha con la actual.
+        System.out.print("\tIngresar Fecha (dia mes año): ");
+        Fecha newFecha = new Fecha( ""+opcion.nextInt(), ""+opcion.nextInt(), ""+opcion.nextInt());
         
-        //---------------------------
+        System.out.println("la fecha es "+newFecha.getFecha() );
         
-        Expositor expo2 = new Expositor("Juan", 22, "Masculino", "Colombia", "Juan.nose@gmail.com");
-        Asistente asist2 = new Asistente("Miguel", "Sonido");
-        Asistente asist3 = new Asistente("josefa", "Ornamental");
-
-        Presentacion fotosintesis = new Presentacion("Fotosintesis", 180, expo2 ); //crea la presentacion
-        fotosintesis.addAsistente(asist2);
-        fotosintesis.addAsistente(asist3);
         
-        Presentacion largaVida = new Presentacion();
-        largaVida.setTema("Larga Vida");
-        largaVida.getExpositor().setNombre("Alberto");
-        
-        Fecha f26_03_2020 = new Fecha("26", "3", "2020"); //crea la fecha
-        f26_03_2020.addPresentacion(fotosintesis); //inserta la presentacion a la fecha
-        f26_03_2020.addPresentacion(largaVida);
-        
-        progreso.addFecha(f26_03_2020);  //inserta la fecha en el calendario
-        
-        //--------------------------
-        
-        Presentacion ejemplo = new Presentacion();
-        ejemplo.setTema("ejemplo");
-        ejemplo.getExpositor().setNombre("Huachipato");
-        ejemplo.getExpositor().setEdad(34);
-        
-        Fecha f03_12_2020 = new Fecha("3", "12", "2020");
-        f03_12_2020.addPresentacion(ejemplo);
-        
-        progreso.addFecha(f03_12_2020);
-        
-        //---------------------------
-        
-        //mostrar
-        mostrarDatos( progreso );
-        
-        //fotosintesis.cancelarPresentacion();
-        largaVida.cancelarPresentacion();
-        //seguridad.cancelarPresentacion();
-        
-        progreso.actualizarCalendario();
-        
-        cancelados.setFechas( progreso.actualizarCalendario( "CLD" ));
-        terminados.setFechas(progreso.actualizarCalendario("TMD"));
-        
-        System.out.println("\nEstos fueron cancelados") ;
-        mostrarDatos( cancelados );
-        
-        System.out.println("\nEstos fueron terminados") ;
-        mostrarDatos( terminados );
-        
-        //mostrar
-        System.out.println("\nSe actualizo el progreso:");
-        mostrarDatos( progreso );
-        
-        progreso.actualizarCalendario();
-        
+        Espera();
     }
     
     public static void mostrarDatos( Calendario calendario ){
@@ -114,6 +104,20 @@ public class main {
                 System.out.print("\n");
             }
         }
+        
+        Espera();
     }
+    
+    public static void Espera(){ 
+        String seguir;
+        Scanner teclado = new Scanner(System.in);
+        System.out.println("Presiona Enter para continuar...");
+        try{
+            seguir = teclado.nextLine();
+        }catch(Exception e){}
+        
+    }
+    
+    
     
 }
