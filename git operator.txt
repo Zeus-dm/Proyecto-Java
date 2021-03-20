@@ -1,0 +1,20 @@
+git init            // vamos a crear un proyecto nuevo
+git add <file>      // pasar los archivos
+git status          // en que estado estan los archivos
+git commit -m "mensaje"  // pasar al repositorio y agregar un mensaje para identificar cambios
+git push            // subirlo a un repositorio remoto 
+git pull            // traer los cambios desde internet
+git clone           // hacer una copia del servidor central
+git checkout -- <file>  // revertir los cambios hechos
+git log             // veo todos los cambios hechos
+git diff <file>     // para ver las diferencias hechas en el archivo
+git add .           // agregar todos los archivos
+
+git branch          // muestra en que rama estas
+git branch <name>   // crea una nueva rama con el nombre dado
+git checkout <name>  // te cambia a la rama con ese nombre
+
+git push --set-upstream origin <name> //subir un brach nuevo al repositorio
+
+
+
